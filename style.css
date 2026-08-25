@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --primary-color: #e0450a;
@@ -311,4 +311,20 @@ hr {
   .section-title h2 {
     font-size: 2rem;
   }
+}
+/* Product card buttons - override large hero padding when inside cards */
+.card-body .btn-primary-custom,
+.card-body .btn-outline-custom {
+  padding: 9px 16px;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.d-grid.gap-2 {
+  gap: 0.6rem !important;
 }
