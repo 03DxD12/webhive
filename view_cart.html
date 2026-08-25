@@ -3,47 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
+    <title>View Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .btn-custom {
-            margin: 0 5px; /* Add some spacing between buttons */
+        .cart-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .cart-item img {
+            max-width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .remove-btn, .buy-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .remove-btn {
+            background: #ff4d4d;
+            color: white;
+        }
+        .remove-btn:hover {
+            background: #ff1a1a;
+        }
+        .buy-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        .buy-btn:hover {
+            background: #45a049;
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Webtoons</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container mt-5">
         <h1 class="text-center">Your Cart</h1>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="cart-items">
-                <!-- Cart items will be injected here -->
-            </tbody>
-        </table>
-        <div class="text-right">
-            <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
+        <div id="cart-items" class="mt-4"></div>
+        <div class="text-center mt-4">
+            <a href="product.html" class="btn btn-warning">Go Back to List of Webtoons</a>
         </div>
     </div>
 
     <script>
-        const loadCart = () => {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const cartTable = document.getElementById("cart-items");
-            cartTable.innerHTML = "";
-            
+        const displayCart = () => {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cartItemsContainer.innerHTML = "";
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                return;
+            }
+
             cart.forEach((item, index) => {
-                let row = `<tr>
-                    <td>${item.name}</td>
-                    <td>${item.price}</td>
-                    <td><button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button></td>
-                </tr>`;
-                cartTable.innerHTML += row;
+                const cartItem = document.createElement("div");
+                cartItem.className = "cart-item";
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" onerror="this.src='default.jpg';">
+                    <div class="cart-item-details">
+                        <p><strong>${item.name}</strong></p>
+                        <p>${item.description}</p>
+                        <p>Price: ${item.price}</p>
+                    </div>
+                    <div>
+                        <button class="buy-btn" onclick="buyNow(${index})">Buy Now</button>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
             });
         };
 
@@ -51,15 +101,19 @@
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
             cart.splice(index, 1);
             localStorage.setItem("cart", JSON.stringify(cart));
-            loadCart();
+            displayCart();
         };
 
-        const clearCart = () => {
-            localStorage.removeItem("cart");
-            loadCart();
+        const buyNow = (index) => {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const item = cart[index];
+            cart.splice(index, 1); // Remove the item from the cart
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`Processing purchase for ${item.name} at ${item.price}!`);
+            displayCart(); // Refresh the cart display
         };
 
-        document.addEventListener("DOMContentLoaded", loadCart);
+        displayCart();
     </script>
 </body>
 </html>

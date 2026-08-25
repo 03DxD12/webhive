@@ -1,188 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="webtoon-logo.png" type="image/x-icon" />
-  </head>
-  <body>
-    <main>
-      <nav
-        class="navbar navbar-expand-lg bg-light p-3 sticky-top border-bottom shadow"
-      >
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img
-              src="webtoon-logo.png"
-              alt="Logo"
-              width="40"
-              class="d-inline-block align-text-top"
-            />
-          </a>
-          <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="icon-bar top-bar"></span>
-            <span class="icon-bar middle-bar"></span>
-            <span class="icon-bar bottom-bar"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse justify-content-end my-1"
-            id="navbarNavDropdown"
-          >
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.html"
-                  >HOME</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">ABOUT</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="product.html">PRODUCTS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">CONTACT</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="container mt-5">
-        <div class="d-flex align-items-center justify-content-between">
-          <a href="product.html" class="btn btn-warning fw-bold"
-            ><i class="bi bi-chevron-left"></i
-          ></a>
-          <h1 class="fw-bold display-4 text-orange text-center">
-            <i class="bi bi-cart-fill"></i> My Cart
-          </h1>
-          <button class="btn btn-danger" onclick="clearCart()">
-            Clear Cart
-          </button>
-        </div>
-        <hr />
-        <div id="cart-items" class="mt-4"></div>
-        <hr />
-        <div class="text-end mt-4">
-          <p class="total-price fs-5 fw-bold">
-            Total Price: <span id="total-price">0</span>
-          </p>
-          <button class="btn btn-success" onclick="buyAll()">
-            Buy All
-          </button>
-        </div>
-      </div>
-      <footer class="d-flex flex-wrap border-top">
-        <div class="container d-flex justify-content-center align-items-center">
-          <a href="/" class="text-decoration-none">
-            <img
-              class="bi me-2 d-none d-lg-block"
-              width="40"
-              src="webtoon-logo.png"
-            />
-          </a>
-          <p class="fs-6 my-4 text-secondary">
-            ©
-            <span
-              ><script>
-                document.write(new Date().getFullYear());
-              </script></span
-            >
-            Webhive. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </main>
-    <script>
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-      const displayCart = () => {
-        const cartItemsContainer = document.getElementById("cart-items");
-        const totalPriceContainer = document.getElementById("total-price");
-        cartItemsContainer.innerHTML = "";
-        if (cart.length === 0) {
-          cartItemsContainer.innerHTML =
-            "<p class='text-center fs-5'>Your cart is empty.</p>";
-          totalPriceContainer.textContent = "0";
-          return;
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .cart-item {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+            flex-wrap: wrap;
         }
-        let totalPrice = 0;
-        cart.forEach((item, index) => {
-          totalPrice += parseFloat(item.price.replace(/[^0-9.]/g, ""));
-          const cartItem = document.createElement("div");
-          cartItem.className = "cart-item";
-          cartItem.innerHTML = `
-                    <div class="d-flex justify-content-between gap-2 py-4 border-bottom">
-                    <img class='cart-img rounded-2 shadow d-flex' src="${item.image}" alt="${item.name}">
-                    <div class="mx-2">
-                        <p class='fw-bold fs-4'>${item.name}</p>
-                        <p class='fw-bold fs-5'>${item.price}</p>
+        .cart-item img {
+            max-width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .remove-btn, .buy-btn, .clear-cart-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .remove-btn {
+            background: #ff4d4d;
+            color: white;
+        }
+        .remove-btn:hover {
+            background: #ff1a1a;
+        }
+        .buy-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        .buy-btn:hover {
+            background: #45a049;
+        }
+        .clear-cart-btn {
+            background: #ff6600;
+            color: white;
+            margin-top: 15px;
+        }
+        .clear-cart-btn:hover {
+            background: #cc5200;
+        }
+        .total-price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Webtoons</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="text-center">Your Cart</h1>
+        <div id="cart-items" class="mt-4"></div>
+        <div class="text-center mt-4">
+            <p class="total-price">Total Price: <span id="total-price">0</span></p>
+            <button class="btn clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+            <a href="product.html" class="btn btn-warning">Go Back to List of Webtoons</a>
+        </div>
+    </div>
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const displayCart = () => {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const totalPriceContainer = document.getElementById("total-price");
+            cartItemsContainer.innerHTML = "";
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                totalPriceContainer.textContent = "0";
+                return;
+            }
+            let totalPrice = 0;
+            cart.forEach((item, index) => {
+                totalPrice += parseFloat(item.price.replace(/[^0-9.]/g, ""));
+                const cartItem = document.createElement("div");
+                cartItem.className = "cart-item";
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <p><strong>${item.name}</strong></p>
+                        <p>${item.description}</p>
+                        <p>Price: ${item.price}</p>
                     </div>
-                    <div class="gap-2">
-                        <button class="btn btn-success" onclick="buyNow('${item.name}', '${item.price}')"><i class="bi bi-bag-fill"></i> <span class='d-none d-md-block'>Buy</span></button>
-                        <button class="btn btn-danger" onclick="removeFromCart(${index})"><i class="bi bi-trash"></i> <span class='d-none d-md-block'>Remove</span></button>
-                    </div>
+                    <div>
+                        <button class="buy-btn" onclick="buyNow('${item.name}')">Buy Now</button>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
                     </div>
                 `;
-          cartItemsContainer.appendChild(cartItem);
-        });
-        totalPriceContainer.textContent = `₱${totalPrice.toFixed(2)}`;
-      };
+                cartItemsContainer.appendChild(cartItem);
+            });
+            totalPriceContainer.textContent = `$${totalPrice.toFixed(2)}`;
+        };
 
-      const removeFromCart = (index) => {
-        cart.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
+        const removeFromCart = (index) => {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+        };
+
+        const clearCart = () => {
+            if (confirm("Are you sure you want to clear your cart?")) {
+                cart = [];
+                localStorage.setItem("cart", JSON.stringify(cart));
+                displayCart();
+            }
+        };
+
+        const buyNow = (itemName) => {
+            alert(`Redirecting to checkout for ${itemName}...`);
+            window.location.href = "checkout.html"; // Replace with actual checkout page
+        };
+
         displayCart();
-      };
-
-      const clearCart = () => {
-        if (confirm("Are you sure you want to clear your cart?")) {
-          cart = [];
-          localStorage.setItem("cart", JSON.stringify(cart));
-          displayCart();
-        }
-      };
-
-      const buyNow = (itemName, itemPrice) => {
-        if (confirm(`Do you want to buy ${itemName} for ${itemPrice} now?`)) {
-          alert(`Processing purchase for ${itemName}...`);
-          // Remove the item from the cart after purchase
-          cart = cart.filter(item => item.name !== itemName);
-          localStorage.setItem("cart", JSON.stringify(cart));
-          displayCart(); // Refresh the cart display
-        }
-      };
-
-      const buyAll = () => {
-        if (confirm("Do you want to buy all items in your cart?")) {
-          alert("Processing purchase for all items in the cart!");
-          // Clear the cart after purchasing all items
-          cart = [];
-          localStorage.setItem("cart", JSON.stringify(cart));
-          window.location.href = "product.html"; // Redirect to the product page
-        }
-      };
-
-      displayCart();
     </script>
-  </body>
+</body>
 </html>
