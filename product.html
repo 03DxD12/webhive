@@ -1,380 +1,865 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Available Webtoons</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        .product-img {
-            width: 100px; /* Set a fixed width for images */
-            height: auto; /* Maintain aspect ratio */
-        }
-        .btn-custom {
-            margin: 5px;
-            display: inline-block;
-        }
-        @media (max-width: 991px) {
-            .btn-custom {
-                display: block;
-                width: calc(100% - 10px);
-                margin: 5px auto;
-            }
-        }
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            z-index: 1000;
-            transition: opacity 0.5s ease;
-        }
-        .toast.error {
-            background-color: #dc3545; /* Red for error messages */
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Webnime</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css?v=2" />
+    <link rel="icon" href="images/webtoon-logo.png" type="image/x-icon" />
+  </head>
+  <body>
+    <main>
+      <nav
+        class="navbar navbar-expand-lg bg-light p-3 sticky-top border-bottom shadow"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img
+              src="images/webtoon-logo.png"
+              alt="Logo"
+              width="40"
+              class="d-inline-block align-text-top"
+            />
+          </a>
+          <button
+            class="navbar-toggler collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end my-1"
+            id="navbarNavDropdown"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html"
+                  >HOME</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">ABOUT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="product.html">PRODUCTS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">CONTACT</a>
+              </li>
             </ul>
+          </div>
         </div>
-    </nav>
-
-    <div class="container mt-5">
-        <h1 class="text-center">Available Webimes</h1>
-        <div class="text-right mb-3">
-            <a href="view_cart.html" class="btn btn-secondary">View Cart</a>
+      </nav>
+      <div class="container store-section">
+        <div class="store-toolbar d-flex align-items-center justify-content-between">
+          <h1 class="fw-bold display-4 text-orange">Available Webtoons</h1>
+          <div class="mb-3">
+            <a href="cart.html" class="btn btn-success">
+              <i class="fas fa-shopping-bag"></i> View Cart
+            </a>
+          </div>
         </div>
-        <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
+        <hr />
+        <div class="table-responsive py-3">
+          <table class="table table-bordered align-middle product-table">
+            <thead class="table-light">
+              <tr>
+                <th class="text-center">Image</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Action</th>
+              </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td><img src="mount hua.jpg" alt="Return of the Mount Hua Sect" class="product-img"></td>
-                    <td>Return of the Mount Hua Sect</td>
-                    <td>Chung Myung, the 13th Disciple of the Mount Hua Sect and the legendary Plum Blossom Sword Saint, defeated the dreaded Chun Ma, saving the world from chaos. But his victory came at a cost—his life.
-
-                        A hundred years later, he awakens in the body of a child, only to discover that the once-mighty Mount Hua Sect has crumbled.
-                        
-                        What kind of nonsense is this!?</td>
-                    <td>₱998.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Return of the Mount Hua Sect', '₱998.00', 'mount hua.jpg', 'Chung Myung, the 13th Disciple of the Mount Hua Sect and the legendary Plum Blossom Sword Saint, defeated the dreaded Chun Ma, saving the world from chaos. But his victory came at a cost—his life. A hundred years later, he awakens in the body of a child, only to discover that the once-mighty Mount Hua Sect has crumbled. What kind of nonsense is this!?')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Return of the Mount Hua Sect', '₱998.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="disaster.jpg" alt="Disaster Class Hero" class="product-img"></td>
-                    <td>The Return of Disaster Class Hero</td>
-                    <td>For twenty years, Lee Geon was trapped in the Tower of Demons, betrayed by the twelve saints chosen by the Zodiac gods. Though he was never a chosen warrior, Geon became the strongest of them all—a hero and a threat.
-
-                        Now, he's back, stronger than ever, ready to unleash vengeance. But taking down these powerful saints won’t be easy. Can Geon survive long enough to claim his divine revenge?</td>
-                    <td>₱1398.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('The Return of Disaster Class Hero', '₱1398.00', 'disaster.jpg', 'For twenty years, Lee Geon was trapped in the Tower of Demons, betrayed by the twelve saints chosen by the Zodiac gods. Though he was never a chosen warrior, Geon became the strongest of them all—a hero and a threat. Now, hes back, stronger than ever, ready to unleash vengeance. But taking down these powerful saints wont be easy. Can Geon survive long enough to claim his divine revenge?')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('The Return of Disaster Class Hero', '₱1398.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="wis.jpg" alt="Wistoria: Wand and Sword " class="product-img"></td>
-                    <td>Wistoria: Wand and Sword</td>
-                    <td>Will Serfort, a sword-wielding student in a magic academy, aims to become a top magician despite lacking magic abilities.</td>
-                    <td>₱1,926</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Wistoria: Wand and Sword', '₱1926.00', 'wis.jpg', 'A sword-wielding student in a magic academy, aims to become a top magician despite lacking magic abilities..')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Wistoria: Wand and Sword', '₱1926.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="jungle juice.jpg" alt="Lookism" class="product-img"></td>
-                    <td>Lookism</td>
-                    <td>A high school student can switch between two bodies—one unattractive and the other handsome—exploring themes of appearance-based discrimination.</td>
-                    <td>₱720.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Lookism', '₱720.00', 'jungle juice.jpg', 'A high school student can switch between two bodies—one unattractive and the other handsome—exploring themes of appearance-based discrimination.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Lookism', '₱720.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="study.jpg" alt="Study Group" class="product-img"></td>
-                    <td>Study Group</td>
-                    <td>Follows a group of students who form a study group, leading to unexpected adventures and personal growth.</td>
-                    <td>₱720.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Study Group', '₱720.00', 'study.jpg', 'Follows a group of students who form a study group, leading to unexpected adventures and personal growth.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Study Group', '₱720.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="peter.jpg" alt="Killer Peter" class="product-img"></td>
-                    <td>Killer Peter</td>
-                    <td>After devoting his life to the crime organization, Glory Club, Peter retires his status as a legendary killer and spends his remaining days running a quiet used bookstore.
-
-                        But after being ambushed and nearly killed one day by the very organization he dedicated his life to, Peter finds his body magically reverted back to its teenage years!
-                        
-                        Now that Peter is back to his peak physique, he sets out to settle the score with Glory Club!</td>
-                    <td>₱998.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Killer Peter', '₱998.00', 'peter.jpg', 'Follows Peter, a legendary assassin, as he navigates a world filled with danger and intrigue.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Killer Peter', '₱998.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="solo leveling.jpg" alt="Solo Leveling" class="product-img"></td>
-                    <td>Solo Leveling</td>
-                    <td>Ten years ago, "the Gate" opened, connecting the real world to a realm of monsters. Some humans gained powers to fight them—these were the Hunters.
-
-                        I’m Sung Jin-Woo, an E-rank Hunter, the weakest of them all. Struggling to survive in low-level dungeons, I barely made ends meet—until I stumbled upon a hidden, deadly dungeon. Facing certain death, I received a mysterious power: a quest log only I could see, a secret to leveling up.
-                        
-                        Now, by completing quests and hunting monsters, I can grow stronger. From the weakest Hunter… to the ultimate S-rank!</td>
-                    <td>₱998.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Solo Leveling', '₱998.00', 'solo leveling.jpg', 'Chronicles the journey of the weakest hunter who gains the ability to level up, becoming one of the strongest.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Solo Leveling', '₱998.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="quest.jpg" alt="Reality Quest" class="product-img"></td>
-                    <td>Reality Quest</td>
-                    <td>Characters are trapped in a game-like reality, facing challenges and uncovering mysteries to escape.</td>
-                    <td>₱1508.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Reality Quest', '₱1508.00', 'quest.jpg', 'Characters are trapped in a game-like reality, facing challenges and uncovering mysteries to escape.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Reality Quest', '₱1508.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="good.jpg" alt="Laws of the Good Child" class="product-img"></td>
-                    <td>Laws of the Good Child</td>
-                    <td>Dead Mansion, a Russian private orphanage, trains children to become agents. The legend of Dead Mansion, codename Sean, which was thought to have been lost due to a "shipping error", has appeared in Korea.</td>
-                    <td>₱898.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Laws of the Good Child', '₱898.00', 'good.jpg', 'Explores the life of a seemingly perfect child who harbors dark secrets, delving into themes of morality and family.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Laws of the Good Child', '₱898.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="kim.jpg" alt="Manager Kim" class="product-img"></td>
-                    <td>Manager Kim</td>
-                    <td>Follows the story of a highly efficient manager in a large corporation, dealing with corporate intrigue and personal challenges.</td>
-                    <td>₱998.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Manager Kim', '₱998.00', 'kim.jpg', 'Follows the story of a highly efficient manager in a large corporation, dealing with corporate intrigue and personal challenges.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Manager Kim', '₱998.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="orv.jpg" alt="Omniscient Reader’s Viewpoint (ORV)" class="product-img"></td>
-                    <td>Omniscient Reader’s Viewpoint (ORV)</td>
-                    <td>A webtoon where the protagonist is the only one who knows how the world will unfold due to reading a novel, and now must navigate the world based on that knowledge.</td>
-                    <td>₱999.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Omniscient Reader’s Viewpoint (ORV)', '₱999.00', 'orv.jpg', 'A webtoon where the protagonist is the only one who knows how the world will unfold due to reading a novel, and now must navigate the world based on that knowledge.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Omniscient Reader’s Viewpoint (ORV)', '₱999.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <td><img src="punch.jpg" alt="One Punch Man" class="product-img"></td>
-                <td>One Punch Man</td>
-                <td>After three years of intense training, Saitama has become unstoppable—defeating any opponent with a single punch. But his overwhelming strength leaves him bored, craving a real challenge.
-
-                    Enter Genos, a powerful cyborg who, after witnessing Saitama’s might, insists on becoming his apprentice. However, Saitama soon realizes that despite his power, he’s unknown to the public. To gain recognition, he joins the Hero Association alongside Genos.
-                    
-                    Now, the two work their way up the ranks, seeking worthy foes and the respect Saitama rightfully deserves!</td>
-                <td>₱999.00</td>
+            <tbody class="text-center px-0">
+              <tr>
                 <td>
-                    <button class="btn btn-success btn-custom" onclick="addToCart('One Punch Man', '₱999.00', 'punch.jpg', 'Saitama, a hero who defeats enemies with a single punch, struggles with the boredom of being too strong.')">
-                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                    </button>
-                    <button class="btn btn-danger btn-custom" onclick="buyNow('One Punch Man', '₱999.00')">
-                        <i class="fas fa-credit-card"></i> Buy Now
-                    </button>
+                  <img
+                    src="images/mount-hua.jpg"
+                    alt="Return of the Mount Hua Sect"
+                    class="product-img"
+                  />
                 </td>
-            </tr>
-                <tr>
-                    <td><img src="execute.jpg" alt="The Executioner" class="product-img"></td>
-                    <td>The Executioner</td>
-                    <td>Villains who couldn't kill him when he was a hero and put him in prison. Now he is a prison guard and carries out executions with his own hands..</td>
-                    <td>₱800.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('The Executioner', '₱800.00', 'execute.jpg', 'Villains who couldnt kill him when he was a hero and put him in prison. Now he is a prison guard and carries out executions with his own hands.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('The Executioner', '₱800.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="dan.jpg" alt="Dandadan" class="product-img"></td>
-                    <td>Dandadan</td>
-                    <td>Ken Takakura, a boy who is an occult fanatic who doesn't believe in ghosts, and Momo Ayase, a girl who doesn't believe in aliens, encounter overwhelming strangeness that transcends their mutual understanding...! An occult coming-of-age story!</td>
-                    <td>₱950.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Dandadan', '₱950.00', 'dan.jpg', 'Ken Takakura, a boy who is an occult fanatic who does not believe in ghosts, and Momo Ayase, a girl who does not believe in aliens, encounter overwhelming strangeness that transcends their mutual understanding...! An occult coming-of-age story!')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Dandadan', '₱950.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="duke.jpg" alt="Duke Pendragon" class="product-img"></td>
-                    <td>Duke Pendragon</td>
-                    <td>A fantasy webtoon about a young noble who tries to reclaim his family's honor and power in a land of magic and intrigue.</td>
-                    <td>₱950.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Duke Pendragon', '₱950.00', 'duke.jpg', 'A fantasy webtoon about a young noble who tries to reclaim his family\'s honor and power in a land of magic and intrigue.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Duke Pendragon', '₱950.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="estate.jpg" alt="Greatest Estate Developer" class="product-img"></td>
-                    <td>Greatest Estate Developer</td>
-                    <td>Follows a man who, after being reincarnated into a fantasy world, becomes the greatest estate developer by using his modern knowledge to build prosperous lands.</td>
-                    <td>₱950.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Greatest Estate Developer', '₱950.00', 'estate.jpg', 'Follows a man who, after being reincarnated into a fantasy world, becomes the greatest estate developer by using his modern knowledge to build prosperous lands.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Greatest Estate Developer', '₱950.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="hit.jpg" alt="Viral Hit" class="product-img"></td>
-                    <td>Viral Hit</td>
-                    <td>A webtoon about a young man who becomes an internet sensation after a strange incident, facing both the perks and downsides of fame.</td>
-                    <td>₱750.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('Viral Hit', '₱750.00', 'hit.jpg', 'A webtoon about a young man who becomes an internet sensation after a strange incident, facing both the perks and downsides of fame.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('Viral Hit', '₱750.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="boy.jpg" alt="True Education" class="product-img"></td>
-                    <td>The Boy of Death</td>
-                    <td>This is about a boy that blesses him with a contract that gives ability to borrow the powers of the dead in their previous life in return of sacrificing years from his lifespan. For the sake of attaining what he wishes for, he eventually agrees to it.</td>
-                    <td>₱750.00</td>
-                    <td>
-                        <button class="btn btn-success btn-custom" onclick="addToCart('The Boy of Death	', '₱750.00', 'boy.jpg', 'This is about a boy that blesses him with a contract that gives ability to borrow the powers of the dead in their previous life in return of sacrificing years from his lifespan. For the sake of attaining what he wishes for, he eventually agrees to it.')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
-                        <button class="btn btn-danger btn-custom" onclick="buyNow('The Boy of Death	', '₱750.00')">
-                            <i class="fas fa-credit-card"></i> Buy Now
-                        </button>
-                    </td>
-                </tr>
+                <td>Return of the Mount Hua Sect</td>
+                <td>
+                  Chung Myung, the 13th Disciple of the Mount Hua Sect and the
+                  legendary Plum Blossom Sword Saint, defeated the dreaded Chun
+                  Ma, saving the world from chaos. But his victory came at a
+                  cost&mdash;his life. A hundred years later, he awakens in the body
+                  of a child, only to discover that the once-mighty Mount Hua
+                  Sect has crumbled. What kind of nonsense is this!?
+                </td>
+                <td>&#8369;998.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Return of the Mount Hua Sect', '&#8369;998.00', 'images/mount-hua.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Return of the Mount Hua Sect', '&#8369;998.00', 'images/mount-hua.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/disaster.jpg"
+                    alt="Disaster Class Hero"
+                    class="product-img"
+                  />
+                </td>
+                <td>Disaster Class Hero</td>
+                <td>
+                  For twenty years, Lee Geon was trapped in the Tower of Demons,
+                  betrayed by the twelve saints chosen by the Zodiac gods.
+                  Though he was never a chosen warrior, Geon became the
+                  strongest of them all&mdash;a hero and a threat. Now, he's back,
+                  stronger than ever, ready to unleash vengeance. But taking
+                  down these powerful saints won&rsquo;t be easy. Can Geon survive
+                  long enough to claim his divine revenge?
+                </td>
+                <td>&#8369;998.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Disaster Class Hero', '&#8369;998.00', 'images/disaster.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Disaster Class Hero', '&#8369;998.00', 'images/disaster.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/lookism.jpg"
+                    alt="Lookism"
+                    class="product-img"
+                  />
+                </td>
+                <td>Lookism</td>
+                <td>
+                  A high school student can switch between two bodies&mdash;one
+                  unattractive and the other handsome&mdash;exploring themes of
+                  appearance-based discrimination.
+                </td>
+                <td>&#8369;720.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Lookism', '&#8369;720.00', 'images/lookism.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Lookism', '&#8369;720.00', 'images/lookism.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/naruto.jpg"
+                    alt="Naruto"
+                    class="product-img"
+                  />
+                </td>
+                <td>Naruto</td>
+                <td>
+                  Before Naruto's birth, a great demon fox had attacked the
+                  Hidden Leaf Village. The 4th Hokage from the leaf village
+                  sealed the demon inside the newly born Naruto, causing him to
+                  unknowingly grow up detested by his fellow villagers. Despite
+                  his lack of talent in many areas of ninjutsu, Naruto strives
+                  for only one goal: to gain the title of Hokage, the strongest
+                  ninja in his village. Desiring the respect he never received,
+                  Naruto works toward his dream with fellow friends Sasuke and
+                  Sakura and mentor Kakashi as they go through many trials and
+                  battles that come with being a ninja.
+                </td>
+                <td>&#8369;870.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Naruto', '&#8369;870.00', 'images/naruto.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Naruto', '&#8369;870.00', 'images/naruto.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/study.jpg"
+                    alt="Study Group"
+                    class="product-img"
+                  />
+                </td>
+                <td>Study Group</td>
+                <td>
+                  Follows a group of students who form a study group, leading to
+                  unexpected adventures and personal growth.
+                </td>
+                <td>&#8369;720.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Study Group', '&#8369;720.00', 'images/study.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Study Group', '&#8369;720.00', 'images/study.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/dbs.jpg"
+                    alt="Dragon Ball Super"
+                    class="product-img"
+                  />
+                </td>
+                <td>Dragon Ball Super</td>
+                <td>
+                  Having defeated Boo, Goku is starting to get bored with his
+                  life on Earth. His wife, Chi-chi, wants him to get a job, but
+                  all he wants to do is train and fight stronger enemies.
+                  Elsewhere in the universe, the God of Destruction, Beerus, and
+                  his attendant Whis are traveling from planet to planet in
+                  search of food and entertainment. After blowing up some
+                  hapless victims, Beerus is reminded of a man from his dreams
+                  with the moniker &ldquo;Super Saiyan God,&rdquo; or something like that...
+                  The God of Destruction sets his sights on Earth to track down
+                  this mysterious man! Maybe this will give Goku something to
+                  do?
+                </td>
+                <td>&#8369;1,300.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Dragon Ball Super', '&#8369;1,300.00', 'images/dbs.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Dragon Ball Super', '&#8369;1,300.00', 'images/dbs.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/peter.jpg"
+                    alt="Killer Peter"
+                    class="product-img"
+                  />
+                </td>
+                <td>Killer Peter</td>
+                <td>
+                  After devoting his life to the crime organization, Glory Club,
+                  Peter retires his status as a legendary killer and spends his
+                  remaining days running a quiet used bookstore. But after being
+                  ambushed and nearly killed one day by the very organization he
+                  dedicated his life to, Peter finds his body magically reverted
+                  back to its teenage years! Now that Peter is back to his peak
+                  physique, he sets out to settle the score with Glory Club!
+                </td>
+                <td>&#8369;998.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Killer Peter', '&#8369;998.00', 'images/peter.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Killer Peter', '&#8369;998.00', 'images/peter.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/punch.jpg"
+                    alt="One Punch Man"
+                    class="product-img"
+                  />
+                </td>
+                <td>One Punch Man</td>
+                <td>
+                  After three years of intense training, Saitama has become
+                  unstoppable&mdash;defeating any opponent with a single punch. But
+                  his overwhelming strength leaves him bored, craving a real
+                  challenge. Enter Genos, a powerful cyborg who, after
+                  witnessing Saitama&rsquo;s might, insists on becoming his
+                  apprentice. However, Saitama soon realizes that despite his
+                  power, he&rsquo;s unknown to the public. To gain recognition, he
+                  joins the Hero Association alongside Genos. Now, the two work
+                  their way up the ranks, seeking worthy foes and the respect
+                  Saitama rightfully deserves!
+                </td>
+                <td>&#8369;999.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('One Punch Man', '&#8369;999.00', 'images/punch.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('One Punch Man', '&#8369;999.00', 'images/punch.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/solo-leveling.jpg"
+                    alt="Solo Leveling"
+                    class="product-img"
+                  />
+                </td>
+                <td>Solo Leveling</td>
+                <td>
+                  Chronicles the journey of the weakest hunter who gains the
+                  ability to level up, becoming one of the strongest.
+                </td>
+                <td>&#8369;998.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Solo Leveling', '&#8369;998.00', 'images/solo-leveling.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Solo Leveling', '&#8369;998.00', 'images/solo-leveling.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/quest.jpg"
+                    alt="Reality Quest"
+                    class="product-img"
+                  />
+                </td>
+                <td>Reality Quest</td>
+                <td>
+                  Due to the school bully's threat to get him game items, Ha
+                  Do-wan, the unlucky game shuttle, died after playing games all
+                  night long for a week. The moment he died,he got respawned to
+                  the classroom one week before he died... Everything is the
+                  same as that day. The only thing that has changed is the
+                  floating in front of him! What? Use the skills of the games
+                  I've played so far to beat the bully?!?!
+                </td>
+                <td>&#8369;998.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Reality Quest', '&#8369;998.00', 'images/quest.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Reality Quest', '&#8369;998.00', 'images/quest.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/good.jpg"
+                    alt="Laws of the Good Child"
+                    class="product-img"
+                  />
+                </td>
+                <td>Laws of the Good Child</td>
+                <td>
+                  Dead Mansion, a Russian private orphanage, trains children to
+                  become agents. The legend of Dead Mansion, codename Sean,
+                  which was thought to have been lost due to a "shipping error",
+                  has appeared in Korea.
+                </td>
+                <td>&#8369;988.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Laws of the Good Child', '&#8369;988.00', 'images/good.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Laws of the Good Child', '&#8369;988.00', 'images/good.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/kim.jpg"
+                    alt="Manager Kim"
+                    class="product-img"
+                  />
+                </td>
+                <td>Manager Kim</td>
+                <td>
+                  Follows the story of a highly efficient manager in a large
+                  corporation, dealing with corporate intrigue and personal
+                  challenges.
+                </td>
+                <td>&#8369;998.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Manager Kim', '&#8369;998.00', 'images/kim.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Manager Kim', '&#8369;998.00', 'images/kim.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/wis.jpg"
+                    alt="Omniscient Reader&rsquo;s Viewpoint (ORV)"
+                    class="product-img"
+                  />
+                </td>
+                <td>Wistoria: Wand and Sword</td>
+                <td>
+                  Will Serfort, a sword-wielding student in a magic academy,
+                  aims to become a top magician despite lacking magic abilities.
+                </td>
+                <td>1,926.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Wistoria: Wand and Sword', '&#8369;1,926.00', 'images/wis.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Wistoria: Wand and Sword', '&#8369;1,926.00', 'images/wis.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/orv.jpg"
+                    alt="Omniscient Reader&rsquo;s Viewpoint (ORV)"
+                    class="product-img"
+                  />
+                </td>
+                <td>Omniscient Reader&rsquo;s Viewpoint (ORV)</td>
+                <td>
+                  A webtoon where the protagonist is the only one who knows how
+                  the world will unfold due to reading a novel, and now must
+                  navigate the world based on that knowledge.
+                </td>
+                <td>&#8369;999.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Omniscient Reader&rsquo;s Viewpoint (ORV)', '&#8369;999.00', 'images/orv.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Omniscient Reader&rsquo;s Viewpoint (ORV)', '&#8369;999.00', 'images/orv.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/boy.jpg"
+                    alt="The Boy of Death"
+                    class="product-img"
+                  />
+                </td>
+                <td>The Boy of Death</td>
+                <td>
+                  Sierra, a grim reaper who later offers him a contract. This
+                  contract blesses him with the ability to borrow the powers of
+                  the dead in their previous life in return of sacrificing years
+                  from his lifespan. For the sake of attaining what he wishes
+                  for, he eventually agrees to it.
+                </td>
+                <td>&#8369;880.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('The Boy of Death', '&#8369;880.00', 'images/boy.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('The Boy of Death', '&#8369;880.00', 'images/boy.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/dan.jpg"
+                    alt="Dandadan"
+                    class="product-img"
+                  />
+                </td>
+                <td>Dandadan</td>
+                <td>
+                  Ken Takakura, a boy who is an occult fanatic who doesn't
+                  believe in ghosts, and Momo Ayase, a girl who doesn't believe
+                  in aliens, encounter overwhelming strangeness that transcends
+                  their mutual understanding...! An occult coming-of-age story!
+                </td>
+                <td>&#8369;1100.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Dandadan', '&#8369;1100.00', 'images/dan.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Dandadan', '&#8369;1100.00', 'images/dan.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/duke.jpg"
+                    alt="Duke Pendragon"
+                    class="product-img"
+                  />
+                </td>
+                <td>Duke Pendragon</td>
+                <td>
+                  A fantasy webtoon about a young noble who tries to reclaim his
+                  family's honor and power in a land of magic and intrigue.
+                </td>
+                <td>&#8369;950.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Duke Pendragon', '&#8369;950.00', 'images/duke.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Duke Pendragon', '&#8369;950.00', 'images/duke.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/estate.jpg"
+                    alt="Greatest Estate Developer"
+                    class="product-img"
+                  />
+                </td>
+                <td>Greatest Estate Developer</td>
+                <td>
+                  Follows a man who, after being reincarnated into a fantasy
+                  world, becomes the greatest estate developer by using his
+                  modern knowledge to build prosperous lands.
+                </td>
+                <td>&#8369;950.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Greatest Estate Developer', '&#8369;950.00','images/estate.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Greatest Estate Developer', '&#8369;950.00','images/estate.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/bleach.jpg"
+                    alt="Bleach"
+                    class="product-img"
+                  />
+                </td>
+                <td>Bleach</td>
+                <td>
+                  Ichigo Kurosaki has always been able to see ghosts, but this
+                  ability doesn't change his life nearly as much as his close
+                  encounter with Rukia Kuchiki, a Soul Reaper and member of the
+                  mysterious Soul Society. While fighting a Hollow, an evil
+                  spirit that preys on humans who display psychic energy, Rukia
+                  attempts to lend Ichigo some of her powers so that he can save
+                  his family, but much to her surprise, Ichigo absorbs every
+                  last drop of her energy. Now a full-fledged Soul Reaper
+                  himself, Ichigo quickly learns that the world he inhabits is
+                  one full of dangerous spirits, and along with Rukia, who is
+                  slowly regaining her powers, it's Ichigo's job to both protect
+                  the innocent from Hollows and to help the spirits themselves
+                  find peace.
+                </td>
+                <td>680.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Bleach', '680.00','images/bleach.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Bleach', '680.00','images/bleach.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/hit.jpg"
+                    alt="Viral Hit"
+                    class="product-img"
+                  />
+                </td>
+                <td>Viral Hit</td>
+                <td>
+                  A webtoon about a young man who becomes an internet sensation
+                  after a strange incident, facing both the perks and downsides
+                  of fame.
+                </td>
+                <td>&#8369;750.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Viral Hit', '&#8369;750.00', 'images/hit.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Viral Hit', '&#8369;750.00', 'images/hit.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/blue.jpg"
+                    alt="Blue Lock"
+                    class="product-img"
+                  />
+                </td>
+                <td>Blue Lock</td>
+                <td>
+                  After a disastrous defeat at the 2018 World Cup, Japan's team
+                  struggles to regroup. But what's missing? An absolute Ace
+                  Striker, who can guide them to the win. The Japan Football
+                  Union is hell-bent on creating a striker who hungers for goals
+                  and thirsts for victory, and who can be the decisive
+                  instrument in turning around a losing match and to do so,
+                  they've gathered 300 of Japan's best and brightest youth
+                  players. Who will emerge to lead the team and will they be
+                  able to out-muscle and out-ego everyone who stands in their
+                  way?
+                </td>
+                <td>&#8369;650.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('Blue Lock', '&#8369;650.00', 'images/blue.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('Blue Lock', '&#8369;650.00', 'images/blue.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img
+                    src="images/true.jpg"
+                    alt="True Education"
+                    class="product-img"
+                  />
+                </td>
+                <td>True Education</td>
+                <td>
+                  Na Hwa-Jin&rsquo;s teaching techniques are pretty violent for
+                  someone who works in the Ministry of Education. That being
+                  said, when punishments don't seem to work on even the worst of
+                  school bullies, there is no better man for the job. Sometimes
+                  you can&rsquo;t get a good education until those bullies are taught
+                  a lesson.
+                </td>
+                <td>&#8369;750.00</td>
+                <td>
+                  <button
+                    class="btn btn-success btn-custom"
+                    onclick="addToCart('True Education', '&#8369;750.00', 'images/true.jpg')"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                  </button>
+                  <button
+                    class="btn btn-danger btn-custom"
+                    onclick="buyNow('True Education', '&#8369;750.00', 'images/true.jpg')"
+                  >
+                    <i class="fas fa-credit-card"></i> Buy Now
+                  </button>
+                </td>
+              </tr>
             </tbody>
-        </table>
+          </table>
         </div>
-    </div>
-
-    <footer class="text-center mt-5">
-        <p><a href="contact.html">Contact Us</a></p>
-    </footer>
-
+      </div>
+      <footer class="d-flex flex-wrap border-top">
+        <div class="container d-flex justify-content-center align-items-center">
+          <a href="index.html" class="text-decoration-none">
+            <img class="bi me-2" width="40" src="images/webtoon-logo.png" />
+          </a>
+          <p class="fs-6 my-4 text-secondary">
+            &copy;
+            <span
+              ><script>
+                document.write(new Date().getFullYear());
+              </script></span
+            >
+            Webhive. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </main>
     <script>
-        const addToCart = (name, price, image, description) => {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.push({ name, price, image, description });
-            localStorage.setItem("cart", JSON.stringify(cart));
-            showToast(`${name} has been added to your cart!`);
-        };
+      const addToCart = (name, price, image) => {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name, price, image });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        showToast(`${name} has been added to your cart!`);
+      };
 
-        const buyNow = (name, price) => {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart = cart.filter(item => item.name !== name); // Remove the item from the cart
-            localStorage.setItem("cart", JSON.stringify(cart));
-            alert(`Processing purchase for ${name} at ${price}!`);
-            // Redirect or handle payment logic here
-        };
+      const buyNow = (name, price) => {
+        if (confirm(`Do you want to buy ${name} for ${price} now?`)) {
+          alert(`Processing purchase for ${name} at ${price}!`);
+          window.location.href = "product.html"; // Redirect to the product page
+        }
+      };
 
-        const showToast = (message, isError = false) => {
-            const toast = document.createElement("div");
-            toast.className = `toast ${isError ? 'error' : ''}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(toast);
-                }, 500);
-            }, 3000);
-        };
+      const showToast = (message, isError = false) => {
+        const toast = document.createElement("div");
+        toast.className = `toast ${isError ? "error" : ""}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          setTimeout(() => {
+            document.body.removeChild(toast);
+          }, 500);
+        }, 3000);
+      };
     </script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
