@@ -2,64 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .btn-custom {
-            margin: 0 5px; /* Add some spacing between buttons */
-        }
-    </style>
+    <meta http-equiv="refresh" content="0; url=cart.html">
+    <title>Redirecting to Cart...</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Your Cart</h1>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="cart-items">
-                <!-- Cart items will be injected here -->
-            </tbody>
-        </table>
-        <div class="text-right">
-            <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
-        </div>
-    </div>
-
-    <script>
-        const loadCart = () => {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const cartTable = document.getElementById("cart-items");
-            cartTable.innerHTML = "";
-            
-            cart.forEach((item, index) => {
-                let row = `<tr>
-                    <td>${item.name}</td>
-                    <td>${item.price}</td>
-                    <td><button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button></td>
-                </tr>`;
-                cartTable.innerHTML += row;
-            });
-        };
-
-        const removeFromCart = (index) => {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.splice(index, 1);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            loadCart();
-        };
-
-        const clearCart = () => {
-            localStorage.removeItem("cart");
-            loadCart();
-        };
-
-        document.addEventListener("DOMContentLoaded", loadCart);
-    </script>
+    <p>Redirecting to your cart... <a href="cart.html">Click here if not redirected</a>.</p>
 </body>
 </html>

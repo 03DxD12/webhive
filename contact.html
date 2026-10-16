@@ -3,52 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - Webtoons</title>
+    <title>Contact Us - Webhive</title>
+    <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css?v=2" />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css?v=5" />
     <link rel="icon" href="images/webtoon-logo.png" type="image/x-icon" />
+    <script src="cart-helper.js"></script>
   </head>
   <body>
     <main>
-      <nav
-        class="navbar navbar-expand-lg bg-light p-3 sticky-top border-bottom shadow"
-      >
+      <!-- Modern Sticky Navigation -->
+      <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">
             <img
               src="images/webtoon-logo.png"
-              alt="Logo"
-              width="40"
+              alt="Webhive Logo"
+              width="44"
+              height="44"
               class="d-inline-block align-text-top"
             />
+            <span class="brand-text">WEBHIVE</span>
           </a>
-          <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="icon-bar top-bar"></span>
-            <span class="icon-bar middle-bar"></span>
-            <span class="icon-bar bottom-bar"></span>
-          </button>
+          <!-- Mobile Cart & Menu Buttons -->
+          <div class="d-flex align-items-center gap-2 d-lg-none">
+            <a class="nav-link nav-cart-btn nav-cart-btn-mobile" href="cart.html" aria-label="Shopping Cart">
+              <i class="bi bi-bag-fill"></i>
+              <span class="cart-badge nav-cart-count">0</span>
+            </a>
+            <button
+              class="navbar-toggler collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar top-bar"></span>
+              <span class="icon-bar middle-bar"></span>
+              <span class="icon-bar bottom-bar"></span>
+            </button>
+          </div>
           <div
             class="collapse navbar-collapse justify-content-end my-1"
             id="navbarNavDropdown"
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.html"
-                  >HOME</a
-                >
+                <a class="nav-link" href="index.html">HOME</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">ABOUT</a>
@@ -59,69 +73,240 @@
               <li class="nav-item">
                 <a class="nav-link active" href="contact.html">CONTACT</a>
               </li>
+              <li class="nav-item d-none d-lg-flex align-items-center ms-lg-2 mt-2 mt-lg-0">
+                <a class="nav-link nav-cart-btn" href="cart.html" aria-label="Shopping Cart">
+                  <i class="bi bi-bag-fill"></i>
+                  <span>CART</span>
+                  <span class="cart-badge nav-cart-count" id="nav-cart-count">0</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
 
-      <div class="container">
-        <div class="row justify-content-center px-3 py-5">
-          <div class="col-lg-8 col-12">
-            <h1 class="fw-bold display-4 text-orange">Contact</h1>
-            <hr />
-            <form>
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" required />
+      <!-- Contact Page Container -->
+      <div class="container my-5 py-2" style="max-width: 1100px;">
+        <div class="text-center mb-5">
+          <div class="hero-kicker">
+            <i class="bi bi-chat-dots-fill me-1"></i> We're Here For You
+          </div>
+          <h1 class="display-4 fw-bold text-orange mb-3 font-heading">Get in Touch</h1>
+          <p class="lead text-secondary mx-auto" style="max-width: 600px;">
+            Have questions about an order, title requests, or general inquiries? Our collector support team is ready to help.
+          </p>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <!-- Left Column: Contact Cards -->
+          <div class="col-12 col-lg-5">
+            <div class="d-flex flex-column gap-3">
+              <!-- Card 1 -->
+              <div class="feature-box p-4">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="feature-icon mb-0">
+                    <i class="bi bi-envelope-heart-fill"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 fw-bold mb-1 text-dark">Email Support</h3>
+                    <p class="text-secondary small mb-0">support@webhive.ph</p>
+                    <small class="text-muted">Response within 2 - 4 hours</small>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" required />
+
+              <!-- Card 2 -->
+              <div class="feature-box p-4">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="feature-icon mb-0">
+                    <i class="bi bi-telephone-fill"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 fw-bold mb-1 text-dark">Customer Hotline</h3>
+                    <p class="text-secondary small mb-0">+63 (02) 8924-5500</p>
+                    <small class="text-muted">Mon - Sat: 9:00 AM - 7:00 PM</small>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea
-                  class="form-control"
-                  id="message"
-                  rows="3"
-                  required
-                ></textarea>
+
+              <!-- Card 3 -->
+              <div class="feature-box p-4">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="feature-icon mb-0">
+                    <i class="bi bi-geo-alt-fill"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 fw-bold mb-1 text-dark">Fulfillment Hub</h3>
+                    <p class="text-secondary small mb-0">Manila, Philippines</p>
+                    <small class="text-muted">Nationwide insured shipping</small>
+                  </div>
+                </div>
               </div>
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary mt-3">
-                  Submit
+
+              <!-- Card 4: Discord / Socials -->
+              <div class="feature-box p-4">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="feature-icon mb-0">
+                    <i class="bi bi-discord"></i>
+                  </div>
+                  <div>
+                    <h3 class="h6 fw-bold mb-1 text-dark">Community Discord</h3>
+                    <p class="text-secondary small mb-0">discord.gg/webhive</p>
+                    <small class="text-muted">Join 10k+ readers discussing weekly chapters</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Form -->
+          <div class="col-12 col-lg-7">
+            <div class="checkout-card p-4 p-md-5">
+              <h2 class="h4 fw-bold text-dark mb-4">
+                <i class="bi bi-send-fill text-orange me-2"></i>Send Us a Message
+              </h2>
+
+              <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="contact-name" class="form-label">Your Name *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="contact-name"
+                      placeholder="Sung Jin-woo"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="contact-email" class="form-label">Email Address *</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="contact-email"
+                      placeholder="reader@example.com"
+                      required
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label for="contact-subject" class="form-label">Topic / Inquiry *</label>
+                    <select class="form-select" id="contact-subject" required>
+                      <option value="Order Tracking">Order Tracking &amp; Delivery</option>
+                      <option value="Product Request">Webtoon Volume Request / Pre-order</option>
+                      <option value="Payment Inquiry">Payment &amp; GCash Support</option>
+                      <option value="General Feedback">Feedback &amp; Suggestions</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label for="contact-message" class="form-label">Your Message *</label>
+                    <textarea
+                      class="form-control"
+                      id="contact-message"
+                      rows="4"
+                      placeholder="How can we assist you with your webtoon journey?"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="col-12 pt-2">
+                    <button type="submit" id="contact-submit-btn" class="btn btn-anime-primary w-100 py-3">
+                      <i class="bi bi-send-check-fill me-1"></i> Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mt-5 pt-3">
+          <div class="text-center mb-4">
+            <h2 class="h3 fw-bold text-dark font-heading">Frequently Asked Questions</h2>
+            <p class="text-secondary small">Quick answers to common questions about Webhive</p>
+          </div>
+
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item border rounded-3 mb-3 overflow-hidden shadow-sm">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  How long does shipping take?
                 </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary small" style="line-height: 1.7;">
+                  Metro Manila deliveries typically take 1 to 3 business days. Provincial areas throughout Luzon, Visayas, and Mindanao arrive within 3 to 6 business days via J&amp;T or Flash Express with live tracking numbers.
+                </div>
               </div>
-            </form>
+            </div>
+
+            <div class="accordion-item border rounded-3 mb-3 overflow-hidden shadow-sm">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Are your webtoons and manga physical or digital copies?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary small" style="line-height: 1.7;">
+                  All items listed on Webhive are 100% authentic, officially licensed physical books and collector's box sets imported from licensed publishers with high-grade full-color print quality.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item border rounded-3 mb-3 overflow-hidden shadow-sm">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  What payment methods are supported?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary small" style="line-height: 1.7;">
+                  We support GCash, Maya, Debit/Credit Cards (Visa/Mastercard), and Cash on Delivery (COD) nationwide for your convenience and peace of mind.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
+      <!-- Footer -->
       <footer class="d-flex flex-wrap border-top">
         <div class="container d-flex justify-content-center align-items-center">
           <a href="index.html" class="text-decoration-none">
-            <img
-              class="bi me-2 d-none d-lg-block"
-              width="40"
-              src="images/webtoon-logo.png"
-            />
+            <img class="bi me-2" width="40" height="40" src="images/webtoon-logo.png" alt="Webhive Logo" />
           </a>
-          <p class="fs-6 my-4 text-secondary">
+          <p class="fs-6 my-4 text-secondary mb-0">
             &copy;
-            <span
-              ><script>
-                document.write(new Date().getFullYear());
-              </script></span
-            >
+            <span id="current-year"></span>
             Webhive. All rights reserved.
           </p>
         </div>
       </footer>
     </main>
+
+    <!-- Bootstrap Bundle JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="cart-helper.js"></script>
+    <script>
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      function handleContactSubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById("contact-submit-btn");
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status"></span> Sending...`;
+
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+          WebhiveCart.showToast("Thank you! Your message has been sent to our support team.", "success");
+          document.getElementById("contact-form").reset();
+        }, 1000);
+      }
+    </script>
   </body>
 </html>

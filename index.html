@@ -3,52 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - Webtoons</title>
+    <title>Webhive - Official Anime &amp; Webtoon Collectibles</title>
+    <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css?v=2" />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css?v=5" />
     <link rel="icon" href="images/webtoon-logo.png" type="image/x-icon" />
+    <script src="cart-helper.js"></script>
   </head>
   <body>
     <main>
-      <nav
-        class="navbar navbar-expand-lg bg-light p-3 sticky-top border-bottom shadow"
-      >
+      <!-- Modern Sticky Navigation -->
+      <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">
             <img
               src="images/webtoon-logo.png"
-              alt="Logo"
-              width="40"
+              alt="Webhive Logo"
+              width="44"
+              height="44"
               class="d-inline-block align-text-top"
             />
+            <span class="brand-text">WEBHIVE</span>
           </a>
-          <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="icon-bar top-bar"></span>
-            <span class="icon-bar middle-bar"></span>
-            <span class="icon-bar bottom-bar"></span>
-          </button>
+          <!-- Mobile Cart & Menu Buttons -->
+          <div class="d-flex align-items-center gap-2 d-lg-none">
+            <a class="nav-link nav-cart-btn nav-cart-btn-mobile" href="cart.html" aria-label="Shopping Cart">
+              <i class="bi bi-bag-fill"></i>
+              <span class="cart-badge nav-cart-count">0</span>
+            </a>
+            <button
+              class="navbar-toggler collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar top-bar"></span>
+              <span class="icon-bar middle-bar"></span>
+              <span class="icon-bar bottom-bar"></span>
+            </button>
+          </div>
           <div
             class="collapse navbar-collapse justify-content-end my-1"
             id="navbarNavDropdown"
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html"
-                  >HOME</a
-                >
+                <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">ABOUT</a>
@@ -59,59 +73,208 @@
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">CONTACT</a>
               </li>
+              <li class="nav-item d-none d-lg-flex align-items-center ms-lg-2 mt-2 mt-lg-0">
+                <a class="nav-link nav-cart-btn" href="cart.html" aria-label="Shopping Cart">
+                  <i class="bi bi-bag-fill"></i>
+                  <span>CART</span>
+                  <span class="cart-badge nav-cart-count" id="nav-cart-count">0</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
+
+      <!-- Hero Section -->
       <section class="hero-section">
         <div class="container col-xxl-10 px-3 px-md-4">
-        <div class="row flex-lg-row-reverse align-items-center g-4 g-lg-5">
-          <div class="col-12 col-lg-6">
-            <img
-              src="images/webime.png"
-              class="home-hero-img mx-lg-auto img-fluid"
-              alt="Featured anime and webtoon titles"
-              width="600"
-            />
-          </div>
-          <div class="col-12 col-lg-6 hero-copy">
-            <p class="hero-kicker">Anime collectibles and webtoons</p>
-            <h1 class="display-3 fw-bold lh-1 mb-3 text-orange">
-              WELCOME TO WEBHIVE
-            </h1>
-            <p class="lead">
-              Your ultimate destination for the best webtoons. Explore our
-              collection and dive into captivating stories!
-            </p>
-            <div class="hero-actions">
-              <a href="product.html" class="btn btn-anime-primary">Shop Now</a>
-              <a href="about.html" class="btn btn-anime-outline">About Us</a>
+          <div class="row flex-lg-row-reverse align-items-center g-4 g-lg-5">
+            <!-- Hero Visual with Glow & Chips -->
+            <div class="col-12 col-lg-6 text-center">
+              <div class="hero-img-wrapper">
+                <div class="hero-chip hero-chip-top">
+                  <i class="bi bi-fire text-danger"></i>
+                  <span>100+ Official Webtoons</span>
+                </div>
+                <img
+                  src="images/webime.png"
+                  class="home-hero-img mx-auto img-fluid"
+                  alt="Featured anime and webtoon titles"
+                  width="580"
+                />
+                <div class="hero-chip hero-chip-bottom">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <span>4.9/5 Collector Rating</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hero Copy -->
+            <div class="col-12 col-lg-6 hero-copy">
+              <div class="hero-kicker">
+                <i class="bi bi-patch-check-fill"></i> Authentic Anime &amp; Webtoon Prints
+              </div>
+              <h1 class="display-3 fw-bold lh-1 mb-3 text-orange font-heading">
+                WELCOME TO <span class="text-gradient">WEBHIVE</span>
+              </h1>
+              <p class="lead">
+                Your premier destination for the finest manhwa, webtoons, and manga collectibles.
+                Immerse yourself in legendary stories with pristine physical editions.
+              </p>
+              <div class="hero-actions">
+                <a href="product.html" class="btn btn-anime-primary">
+                  <i class="bi bi-compass-fill me-1"></i> Explore Webtoons
+                </a>
+                <a href="cart.html" class="btn btn-anime-outline">
+                  <i class="bi bi-bag-fill me-1"></i> My Cart
+                </a>
+              </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Features Strip -->
+      <section class="features-strip">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-6 col-md-3">
+              <div class="feature-box text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="bi bi-truck"></i>
+                </div>
+                <h3 class="h6 fw-bold mb-1">Fast Delivery</h3>
+                <p class="text-secondary small mb-0">Nationwide courier with real-time tracking</p>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="feature-box text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="bi bi-shield-check"></i>
+                </div>
+                <h3 class="h6 fw-bold mb-1">100% Authentic</h3>
+                <p class="text-secondary small mb-0">Direct from licensed publishers and studios</p>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="feature-box text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="bi bi-wallet2"></i>
+                </div>
+                <h3 class="h6 fw-bold mb-1">Flexible Payment</h3>
+                <p class="text-secondary small mb-0">GCash, Maya, Card &amp; Cash on Delivery</p>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="feature-box text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="bi bi-headset"></i>
+                </div>
+                <h3 class="h6 fw-bold mb-1">24/7 Support</h3>
+                <p class="text-secondary small mb-0">Dedicated reader and collector assistance</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <!-- Featured Quick Showcase -->
+      <section class="py-5" style="background: #ffffff;">
+        <div class="container py-2">
+          <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-2">
+            <div>
+              <h2 class="h3 fw-bold text-dark m-0">Trending Manhwa &amp; Webtoons</h2>
+              <p class="text-secondary small m-0">Top-rated bestsellers loved by thousands of readers</p>
+            </div>
+            <a href="product.html" class="btn btn-anime-outline btn-sm">
+              View All <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+
+          <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-6 col-md-3">
+              <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden p-2" style="background: var(--anime-page);">
+                <div class="overflow-hidden rounded-3 mb-2" style="aspect-ratio: 3/4;">
+                  <img src="images/mount-hua.jpg" alt="Return of the Mount Hua Sect" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+                </div>
+                <h3 class="h6 fw-bold text-dark text-truncate mb-1">Return of Mount Hua</h3>
+                <div class="text-orange fw-bold small mb-2">&#8369;998.00</div>
+                <button class="btn btn-sm btn-anime-primary w-100 mt-auto" onclick="WebhiveCart.addToCart('Return of the Mount Hua Sect', '&#8369;998.00', 'images/mount-hua.jpg')">
+                  <i class="bi bi-bag-plus"></i> Add
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-6 col-md-3">
+              <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden p-2" style="background: var(--anime-page);">
+                <div class="overflow-hidden rounded-3 mb-2" style="aspect-ratio: 3/4;">
+                  <img src="images/solo-leveling.jpg" alt="Solo Leveling" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+                </div>
+                <h3 class="h6 fw-bold text-dark text-truncate mb-1">Solo Leveling</h3>
+                <div class="text-orange fw-bold small mb-2">&#8369;899.00</div>
+                <button class="btn btn-sm btn-anime-primary w-100 mt-auto" onclick="WebhiveCart.addToCart('Solo Leveling', '&#8369;899.00', 'images/solo-leveling.jpg')">
+                  <i class="bi bi-bag-plus"></i> Add
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-6 col-md-3">
+              <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden p-2" style="background: var(--anime-page);">
+                <div class="overflow-hidden rounded-3 mb-2" style="aspect-ratio: 3/4;">
+                  <img src="images/blue.jpg" alt="Blue Lock" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+                </div>
+                <h3 class="h6 fw-bold text-dark text-truncate mb-1">Blue Lock</h3>
+                <div class="text-orange fw-bold small mb-2">&#8369;650.00</div>
+                <button class="btn btn-sm btn-anime-primary w-100 mt-auto" onclick="WebhiveCart.addToCart('Blue Lock', '&#8369;650.00', 'images/blue.jpg')">
+                  <i class="bi bi-bag-plus"></i> Add
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-6 col-md-3">
+              <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden p-2" style="background: var(--anime-page);">
+                <div class="overflow-hidden rounded-3 mb-2" style="aspect-ratio: 3/4;">
+                  <img src="images/jungle-juice.jpg" alt="Jungle Juice" class="w-100 h-100 object-fit-cover" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+                </div>
+                <h3 class="h6 fw-bold text-dark text-truncate mb-1">Jungle Juice</h3>
+                <div class="text-orange fw-bold small mb-2">&#8369;699.00</div>
+                <button class="btn btn-sm btn-anime-primary w-100 mt-auto" onclick="WebhiveCart.addToCart('Jungle Juice', '&#8369;699.00', 'images/jungle-juice.jpg')">
+                  <i class="bi bi-bag-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
       <footer class="d-flex flex-wrap border-top">
         <div class="container d-flex justify-content-center align-items-center">
           <a href="index.html" class="text-decoration-none">
-            <img class="bi me-2" width="40" src="images/webtoon-logo.png" />
+            <img class="bi me-2" width="40" height="40" src="images/webtoon-logo.png" alt="Webhive Logo" />
           </a>
-          <p class="fs-6 my-4 text-secondary">
+          <p class="fs-6 my-4 text-secondary mb-0">
             &copy;
-            <span
-              ><script>
-                document.write(new Date().getFullYear());
-              </script></span
-            >
+            <span id="current-year"></span>
             Webhive. All rights reserved.
           </p>
         </div>
       </footer>
     </main>
+
+    <!-- Bootstrap Bundle JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="cart-helper.js"></script>
+    <script>
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

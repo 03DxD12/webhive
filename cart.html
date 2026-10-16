@@ -3,56 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Cart</title>
+    <title>Shopping Cart - Webhive</title>
+    <!-- Bootstrap 5 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
-    <link rel="stylesheet" href="style.css?v=2" />
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css?v=5" />
     <link rel="icon" href="images/webtoon-logo.png" type="image/x-icon" />
+    <script src="cart-helper.js"></script>
   </head>
   <body>
     <main>
-      <nav
-        class="navbar navbar-expand-lg bg-light p-3 sticky-top border-bottom shadow"
-      >
+      <!-- Modern Navigation -->
+      <nav class="navbar navbar-expand-lg bg-light sticky-top shadow-sm">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">
             <img
               src="images/webtoon-logo.png"
-              alt="Logo"
-              width="40"
+              alt="Webhive Logo"
+              width="44"
+              height="44"
               class="d-inline-block align-text-top"
             />
+            <span class="brand-text">WEBHIVE</span>
           </a>
-          <button
-            class="navbar-toggler collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="icon-bar top-bar"></span>
-            <span class="icon-bar middle-bar"></span>
-            <span class="icon-bar bottom-bar"></span>
-          </button>
+          <!-- Mobile Cart & Menu Buttons -->
+          <div class="d-flex align-items-center gap-2 d-lg-none">
+            <a class="nav-link nav-cart-btn nav-cart-btn-mobile" href="cart.html" aria-label="Shopping Cart">
+              <i class="bi bi-bag-fill"></i>
+              <span class="cart-badge nav-cart-count">0</span>
+            </a>
+            <button
+              class="navbar-toggler collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="icon-bar top-bar"></span>
+              <span class="icon-bar middle-bar"></span>
+              <span class="icon-bar bottom-bar"></span>
+            </button>
+          </div>
           <div
             class="collapse navbar-collapse justify-content-end my-1"
             id="navbarNavDropdown"
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.html"
-                  >HOME</a
-                >
+                <a class="nav-link" href="index.html">HOME</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">ABOUT</a>
@@ -63,126 +73,250 @@
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">CONTACT</a>
               </li>
+              <li class="nav-item d-none d-lg-flex align-items-center ms-lg-2 mt-2 mt-lg-0">
+                <a class="nav-link nav-cart-btn active" href="cart.html" aria-label="Shopping Cart">
+                  <i class="bi bi-bag-fill"></i>
+                  <span>CART</span>
+                  <span class="cart-badge nav-cart-count" id="nav-cart-count">0</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
-      <div class="container mt-5">
-        <div class="d-flex align-items-center justify-content-between">
-          <a href="product.html" class="btn btn-warning fw-bold"
-            ><i class="bi bi-chevron-left"></i
-          ></a>
-          <h1 class="fw-bold display-4 text-orange text-center">
-            <i class="bi bi-cart-fill"></i> My Cart
-          </h1>
-          <button class="btn btn-danger" onclick="clearCart()">
-            Clear Cart
-          </button>
+
+      <!-- Cart Page Content -->
+      <div class="container my-5 py-2" style="max-width: 1200px;">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+          <div class="d-flex align-items-center gap-3">
+            <a href="product.html" class="btn btn-outline-secondary rounded-circle p-2 d-inline-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
+              <i class="bi bi-arrow-left fs-5"></i>
+            </a>
+            <div>
+              <h1 class="h2 fw-bold text-dark m-0">
+                <i class="bi bi-bag-heart-fill text-orange me-2"></i>My Shopping Cart
+              </h1>
+              <p class="text-secondary small m-0">Review your selected webtoons before checkout</p>
+            </div>
+          </div>
+          <div id="cart-actions-top" style="display: none;">
+            <button class="btn btn-outline-danger btn-sm px-3" onclick="clearCart()">
+              <i class="bi bi-trash3-fill me-1"></i> Clear Cart
+            </button>
+          </div>
         </div>
-        <hr />
-        <div id="cart-items" class="mt-4"></div>
-        <hr />
-        <div class="text-end mt-4">
-          <p class="total-price fs-5 fw-bold">
-            Total Price: <span id="total-price">0</span>
-          </p>
-          <button class="btn btn-success" onclick="buyAll()">
-            Buy All
-          </button>
+
+        <div class="row g-4" id="cart-main-row">
+          <!-- Cart Items List (col-lg-8) -->
+          <div class="col-12 col-lg-8">
+            <div class="cart-card">
+              <div id="cart-items-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary Card (col-lg-4) -->
+          <div class="col-12 col-lg-4" id="cart-summary-col" style="display: none;">
+            <div class="order-summary-card">
+              <h2 class="h5 fw-bold mb-3 pb-2 border-bottom text-dark">
+                <i class="bi bi-card-checklist text-orange me-1"></i> Cart Summary
+              </h2>
+
+              <div class="summary-calc-row">
+                <span>Items Count</span>
+                <span id="summary-items-count" class="fw-bold text-dark">0</span>
+              </div>
+              <div class="summary-calc-row">
+                <span>Subtotal</span>
+                <span id="summary-subtotal" class="fw-bold text-dark">&#8369;0.00</span>
+              </div>
+              <div class="summary-calc-row">
+                <span>Estimated Shipping</span>
+                <span id="summary-shipping-note" class="fw-bold text-success">Calculated at checkout</span>
+              </div>
+
+              <div class="summary-calc-row total mt-3 pt-3">
+                <span>Estimated Total</span>
+                <span class="total-amount" id="summary-total-price">&#8369;0.00</span>
+              </div>
+
+              <!-- CTA Buttons -->
+              <div class="d-grid gap-2 mt-4">
+                <a href="checkout.html" class="btn btn-anime-primary py-3 fs-5">
+                  <i class="bi bi-lock-fill me-1"></i> Proceed to Checkout
+                </a>
+                <a href="product.html" class="btn btn-anime-outline py-2">
+                  <i class="bi bi-plus-circle me-1"></i> Add More Webtoons
+                </a>
+              </div>
+
+              <div class="trust-badge-row mt-4">
+                <span><i class="bi bi-shield-check text-success me-1"></i> Guaranteed Safe</span>
+                <span><i class="bi bi-truck text-primary me-1"></i> Fast Shipping</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Footer -->
       <footer class="d-flex flex-wrap border-top">
         <div class="container d-flex justify-content-center align-items-center">
           <a href="index.html" class="text-decoration-none">
-            <img
-              class="bi me-2 d-none d-lg-block"
-              width="40"
-              src="images/webtoon-logo.png"
-            />
+            <img class="bi me-2" width="40" height="40" src="images/webtoon-logo.png" alt="Webhive Logo" />
           </a>
-          <p class="fs-6 my-4 text-secondary">
+          <p class="fs-6 my-4 text-secondary mb-0">
             &copy;
-            <span
-              ><script>
-                document.write(new Date().getFullYear());
-              </script></span
-            >
+            <span id="current-year"></span>
             Webhive. All rights reserved.
           </p>
         </div>
       </footer>
     </main>
-    <script>
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      const displayCart = () => {
-        const cartItemsContainer = document.getElementById("cart-items");
-        const totalPriceContainer = document.getElementById("total-price");
-        cartItemsContainer.innerHTML = "";
+    <!-- Bootstrap Bundle JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="cart-helper.js"></script>
+
+    <script>
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      function renderCart() {
+        const cart = WebhiveCart.getCart();
+        const container = document.getElementById("cart-items-container");
+        const actionsTop = document.getElementById("cart-actions-top");
+        const summaryCol = document.getElementById("cart-summary-col");
+        const subtotalEl = document.getElementById("summary-subtotal");
+        const totalEl = document.getElementById("summary-total-price");
+        const countEl = document.getElementById("summary-items-count");
+
+        container.innerHTML = "";
+
         if (cart.length === 0) {
-          cartItemsContainer.innerHTML =
-            "<p class='text-center fs-5'>Your cart is empty.</p>";
-          totalPriceContainer.textContent = "0";
+          actionsTop.style.display = "none";
+          summaryCol.style.display = "none";
+          document.getElementById("cart-main-row").querySelector(".col-lg-8").className = "col-12";
+
+          container.innerHTML = `
+            <div class="empty-cart-state">
+              <div class="empty-cart-icon">
+                <i class="bi bi-cart-x"></i>
+              </div>
+              <h3 class="fw-bold text-dark mb-2">Your Cart is Currently Empty</h3>
+              <p class="text-muted mb-4" style="max-width: 440px; margin-inline: auto;">
+                Looks like you haven't added any webtoons or anime volumes yet. Explore our curated bestsellers!
+              </p>
+              <a href="product.html" class="btn btn-anime-primary py-2 px-4 fs-6">
+                <i class="bi bi-compass me-1"></i> Browse Products
+              </a>
+            </div>
+          `;
           return;
         }
-        let totalPrice = 0;
+
+        actionsTop.style.display = "block";
+        summaryCol.style.display = "block";
+        document.getElementById("cart-main-row").querySelector(".col-12").className = "col-12 col-lg-8";
+
+        let subtotal = 0;
+        let totalCount = 0;
+
         cart.forEach((item, index) => {
-          totalPrice += parseFloat(item.price.replace(/[^0-9.]/g, ""));
-          const cartItem = document.createElement("div");
-          cartItem.className = "cart-item";
-          cartItem.innerHTML = `
-                    <div class="d-flex justify-content-between gap-2 py-4 border-bottom">
-                    <img class='cart-img rounded-2 shadow d-flex' src="${item.image}" alt="${item.name}">
-                    <div class="mx-2">
-                        <p class='fw-bold fs-4'>${item.name}</p>
-                        <p class='fw-bold fs-5'>${item.price}</p>
-                    </div>
-                    <div class="gap-2">
-                        <button class="btn btn-success" onclick="buyNow('${item.name}', '${item.price}')"><i class="bi bi-bag-fill"></i> <span class='d-none d-md-block'>Buy</span></button>
-                        <button class="btn btn-danger" onclick="removeFromCart(${index})"><i class="bi bi-trash"></i> <span class='d-none d-md-block'>Remove</span></button>
-                    </div>
-                    </div>
-                `;
-          cartItemsContainer.appendChild(cartItem);
+          const qty = parseInt(item.quantity, 10) || 1;
+          const unitPrice = WebhiveCart.parsePrice(item.price);
+          const itemTotal = unitPrice * qty;
+          subtotal += itemTotal;
+          totalCount += qty;
+
+          const row = document.createElement("div");
+          row.className = "cart-item-row";
+          row.innerHTML = `
+            <div class="d-flex align-items-center gap-3">
+              <img src="${item.image || 'images/webtoon-logo.png'}" alt="${item.name}" class="cart-thumb flex-shrink-0" style="width: 80px !important; height: 106px !important; min-width: 80px !important; max-width: 80px !important; object-fit: cover !important; border-radius: 10px !important;" />
+              <div>
+                <h4 class="h6 fw-bold mb-1 text-dark">${item.name}</h4>
+                <div class="text-orange fw-bold mb-2">${WebhiveCart.formatPrice(unitPrice)}</div>
+                <!-- Qty Stepper -->
+                <div class="qty-control">
+                  <button class="qty-btn" onclick="updateItemQuantity(${index}, -1)" aria-label="Decrease quantity">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                  <span class="qty-display">${qty}</span>
+                  <button class="qty-btn" onclick="updateItemQuantity(${index}, 1)" aria-label="Increase quantity">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column align-items-end justify-content-between h-100">
+              <div class="fw-bold fs-5 text-dark mb-3">
+                ${WebhiveCart.formatPrice(itemTotal)}
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-danger btn-sm" onclick="removeItem(${index})" title="Remove item">
+                  <i class="bi bi-trash"></i>
+                </button>
+                <a href="checkout.html" class="btn btn-sm btn-success px-3" onclick="checkoutSingle(${index})">
+                  Buy Now
+                </a>
+              </div>
+            </div>
+          `;
+          container.appendChild(row);
         });
-        totalPriceContainer.textContent = `\u20b1${totalPrice.toFixed(2)}`;
-      };
 
-      const removeFromCart = (index) => {
+        countEl.textContent = totalCount;
+        subtotalEl.textContent = WebhiveCart.formatPrice(subtotal);
+        totalEl.textContent = WebhiveCart.formatPrice(subtotal);
+      }
+
+      function updateItemQuantity(index, delta) {
+        let cart = WebhiveCart.getCart();
+        if (cart[index]) {
+          let currentQty = parseInt(cart[index].quantity, 10) || 1;
+          currentQty += delta;
+          if (currentQty <= 0) {
+            cart.splice(index, 1);
+          } else {
+            cart[index].quantity = currentQty;
+          }
+          WebhiveCart.saveCart(cart);
+          renderCart();
+        }
+      }
+
+      function removeItem(index) {
+        let cart = WebhiveCart.getCart();
         cart.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        displayCart();
-      };
+        WebhiveCart.saveCart(cart);
+        renderCart();
+      }
 
-      const clearCart = () => {
-        if (confirm("Are you sure you want to clear your cart?")) {
-          cart = [];
-          localStorage.setItem("cart", JSON.stringify(cart));
-          displayCart();
+      function clearCart() {
+        if (confirm("Are you sure you want to empty your entire cart?")) {
+          WebhiveCart.saveCart([]);
+          renderCart();
         }
-      };
+      }
 
-      const buyNow = (itemName, itemPrice) => {
-        if (confirm(`Do you want to buy ${itemName} for ${itemPrice} now?`)) {
-          alert(`Processing purchase for ${itemName}...`);
-          // Remove the item from the cart after purchase
-          cart = cart.filter(item => item.name !== itemName);
-          localStorage.setItem("cart", JSON.stringify(cart));
-          displayCart(); // Refresh the cart display
-        }
-      };
+      function checkoutSingle(index) {
+        // Keeps selected item as primary or proceed to checkout
+        window.location.href = "checkout.html";
+      }
 
-      const buyAll = () => {
-        if (confirm("Do you want to buy all items in your cart?")) {
-          alert("Processing purchase for all items in the cart!");
-          // Clear the cart after purchasing all items
-          cart = [];
-          localStorage.setItem("cart", JSON.stringify(cart));
-          window.location.href = "product.html"; // Redirect to the product page
-        }
-      };
+      document.addEventListener("DOMContentLoaded", () => {
+        renderCart();
+      });
 
-      displayCart();
+      window.addEventListener("cartUpdated", () => {
+        renderCart();
+      });
     </script>
   </body>
 </html>
