@@ -19,7 +19,6 @@
     <!-- Custom Style -->
     <link rel="stylesheet" href="style.css?v=5" />
     <link rel="icon" href="images/webtoon-logo.png" type="image/x-icon" />
-    <script src="cart-helper.js"></script>
     <style>
       /* Embedded Checkout Critical Styles for Instant & Bulletproof Rendering */
       .checkout-wrapper {
@@ -131,12 +130,11 @@
         display: block;
       }
       .payment-card-option input[type="radio"] {
-        display: none !important;
         position: absolute;
         opacity: 0;
-        width: 0;
-        height: 0;
-        pointer-events: none;
+        width: 1px;
+        height: 1px;
+        margin: 0;
       }
       .payment-card-inner {
         display: flex;
@@ -145,8 +143,12 @@
         border-radius: 16px;
         border: 2px solid #e2e8f0;
         background: #ffffff;
-        transition: all 0.22s ease;
+        transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
         height: 100%;
+      }
+      .payment-card-option input[type="radio"]:focus-visible + .payment-card-inner {
+        outline: 2px solid #ff5722;
+        outline-offset: 2px;
       }
       .payment-card-option:hover .payment-card-inner {
         border-color: rgba(255, 87, 34, 0.4);
@@ -201,7 +203,7 @@
         border-radius: 14px;
         margin-bottom: 0.75rem;
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
       }
       .shipping-option:hover {
         border-color: rgba(255, 87, 34, 0.35);
@@ -865,12 +867,14 @@
           const itemTotal = price * qty;
           subtotal += itemTotal;
 
+          const safeName = WebhiveCart.escapeHtml(item.name);
+          const safeImage = WebhiveCart.escapeHtml(item.image || "images/webtoon-logo.png");
           const row = document.createElement("div");
           row.className = "summary-item-row d-flex align-items-center gap-3";
           row.innerHTML = `
-            <img src="${item.image || 'images/webtoon-logo.png'}" alt="${item.name}" class="summary-item-img flex-shrink-0" style="width: 54px !important; height: 72px !important; min-width: 54px !important; max-width: 54px !important; object-fit: cover !important; border-radius: 8px !important;" />
+            <img src="${safeImage}" alt="${safeName}" class="summary-item-img flex-shrink-0" style="width: 54px !important; height: 72px !important; min-width: 54px !important; max-width: 54px !important; object-fit: cover !important; border-radius: 8px !important;" />
             <div class="flex-grow-1 min-w-0">
-              <div class="fw-bold small text-dark text-truncate">${item.name}</div>
+              <div class="fw-bold small text-dark text-truncate">${safeName}</div>
               <div class="text-muted small">Qty: ${qty} &times; ${WebhiveCart.formatPrice(price)}</div>
             </div>
             <div class="fw-bold small text-end flex-shrink-0">${WebhiveCart.formatPrice(itemTotal)}</div>

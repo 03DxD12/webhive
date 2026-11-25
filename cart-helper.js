@@ -1,5 +1,14 @@
 // Webhive Shared Cart & UI Utilities
 const WebhiveCart = {
+  escapeHtml(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  },
+
   getCart() {
     try {
       return JSON.parse(localStorage.getItem("cart")) || [];
@@ -84,20 +93,25 @@ const WebhiveCart = {
       container = document.createElement("div");
       container.id = "webhive-toast-container";
       container.className = "toast-container position-fixed bottom-0 end-0 p-3";
+      container.setAttribute("aria-live", "polite");
+      container.setAttribute("aria-atomic", "true");
       container.style.zIndex = "99999";
       document.body.appendChild(container);
     }
 
+    const safeMessage = this.escapeHtml(message);
+    const safeImage = image ? this.escapeHtml(image) : "";
     const toastEl = document.createElement("div");
     toastEl.className = "webhive-toast";
+    toastEl.setAttribute("role", "status");
     toastEl.innerHTML = `
-      ${image ? `<img src="${image}" alt="Item" class="toast-thumb">` : `<i class="bi ${type === "error" ? "bi-exclamation-circle-fill text-danger" : "bi-check-circle-fill text-success"}"></i>`}
+      ${safeImage ? `<img src="${safeImage}" alt="Item" class="toast-thumb">` : `<i class="bi ${type === "error" ? "bi-exclamation-circle-fill text-danger" : "bi-check-circle-fill text-success"}" aria-hidden="true"></i>`}
       <div class="toast-body-text">
         <div class="toast-title">${type === "error" ? "Notice" : "Success"}</div>
-        <div class="toast-msg">${message}</div>
+        <div class="toast-msg">${safeMessage}</div>
       </div>
       <a href="cart.html" class="toast-action-btn">View Cart</a>
-      <button type="button" class="toast-close-btn" aria-label="Close">&times;</button>
+      <button type="button" class="toast-close-btn" aria-label="Close notification">&times;</button>
     `;
 
     container.appendChild(toastEl);

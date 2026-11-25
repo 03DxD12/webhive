@@ -19,7 +19,6 @@
     <!-- Custom Style -->
     <link rel="stylesheet" href="style.css?v=5" />
     <link rel="icon" href="images/webtoon-logo.png" type="image/x-icon" />
-    <script src="cart-helper.js"></script>
   </head>
   <body>
     <main>
@@ -233,22 +232,24 @@
           subtotal += itemTotal;
           totalCount += qty;
 
+          const safeName = WebhiveCart.escapeHtml(item.name);
+          const safeImage = WebhiveCart.escapeHtml(item.image || "images/webtoon-logo.png");
           const row = document.createElement("div");
           row.className = "cart-item-row";
           row.innerHTML = `
             <div class="d-flex align-items-center gap-3">
-              <img src="${item.image || 'images/webtoon-logo.png'}" alt="${item.name}" class="cart-thumb flex-shrink-0" style="width: 80px !important; height: 106px !important; min-width: 80px !important; max-width: 80px !important; object-fit: cover !important; border-radius: 10px !important;" />
+              <img src="${safeImage}" alt="${safeName}" class="cart-thumb flex-shrink-0" style="width: 80px !important; height: 106px !important; min-width: 80px !important; max-width: 80px !important; object-fit: cover !important; border-radius: 10px !important;" />
               <div>
-                <h4 class="h6 fw-bold mb-1 text-dark">${item.name}</h4>
+                <h4 class="h6 fw-bold mb-1 text-dark">${safeName}</h4>
                 <div class="text-orange fw-bold mb-2">${WebhiveCart.formatPrice(unitPrice)}</div>
                 <!-- Qty Stepper -->
                 <div class="qty-control">
-                  <button class="qty-btn" onclick="updateItemQuantity(${index}, -1)" aria-label="Decrease quantity">
-                    <i class="bi bi-dash"></i>
+                  <button class="qty-btn" type="button" onclick="updateItemQuantity(${index}, -1)" aria-label="Decrease quantity of ${safeName}">
+                    <i class="bi bi-dash" aria-hidden="true"></i>
                   </button>
                   <span class="qty-display">${qty}</span>
-                  <button class="qty-btn" onclick="updateItemQuantity(${index}, 1)" aria-label="Increase quantity">
-                    <i class="bi bi-plus"></i>
+                  <button class="qty-btn" type="button" onclick="updateItemQuantity(${index}, 1)" aria-label="Increase quantity of ${safeName}">
+                    <i class="bi bi-plus" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -259,8 +260,8 @@
                 ${WebhiveCart.formatPrice(itemTotal)}
               </div>
               <div class="d-flex gap-2">
-                <button class="btn btn-outline-danger btn-sm" onclick="removeItem(${index})" title="Remove item">
-                  <i class="bi bi-trash"></i>
+                <button class="btn btn-outline-danger btn-sm" type="button" onclick="removeItem(${index})" title="Remove item" aria-label="Remove ${safeName} from cart">
+                  <i class="bi bi-trash" aria-hidden="true"></i>
                 </button>
                 <a href="checkout.html" class="btn btn-sm btn-success px-3" onclick="checkoutSingle(${index})">
                   Buy Now
